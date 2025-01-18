@@ -1,40 +1,13 @@
 'use client';
 import Navbar from '@/Components/Navbar';
-import React, { useState } from 'react';
+import React from 'react';
 import { BiSun } from 'react-icons/bi'; // Morning icon
-import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'; // Navigation arrows
 import { FiPhone, FiMail, FiMapPin } from 'react-icons/fi';
 import Footer from '../SubComponents/Footer';
 const AppointmentSchedule = () => {
-  const [selectedDate, setSelectedDate] = useState(0); // Default to the first date
-  const [selectedSlot, setSelectedSlot] = useState("");
 
-  const dates = ["Dec, 26", "Dec, 27", "Dec, 28", "Dec, 29", "Dec, 30"];
-  const slots = {
-    "Dec, 26": {
-    
-      morning: ["08:00 AM", "08:20 AM", "08:40 AM", "09:00 AM", "09:20 AM","10:00 AM","10:40 AM", "11:00 AM"],
-      afternoon: ["02:00 PM", "02:20 PM", "02:40 PM", "03:00 PM", "03:20 PM","03:50 PM", "04:10 PM", "04:30 PM"],
-    },
-    "Dec, 27": {
-      morning: ["10:00 AM", "10:20 AM", "10:40 AM", "11:00 AM"],
-      afternoon: ["12:00 PM", "12:20 PM", "12:40 PM", "01:00 PM"],
-    },
-    "Dec, 28": {
-      morning: ["09:00 AM", "09:20 AM", "09:40 AM", "10:00 AM"],
-      afternoon: ["01:00 PM", "01:20 PM", "01:40 PM", "02:00 PM"],
-    },
-    "Dec, 29": {
-        morning: ["11:00 AM", "11:20 AM", "11:40 AM"],
-        afternoon: ["12:00 PM", "12:20 PM", "12:40 PM"],
-    },
-    "Dec, 30": {
-      morning: ["07:00 AM", "07:20 AM", "07:40 AM", "08:00 AM"],
-      afternoon: ["03:30 PM", "03:50 PM", "04:10 PM", "04:30 PM"],
-    },
-  };
 
-  const currentSlots = slots[dates[selectedDate]];
+ 
 
   return (
     <div>
@@ -59,57 +32,14 @@ const AppointmentSchedule = () => {
         </div>
       </div>
 
-      {/* Date Navigation */}
-      <div className="flex items-center justify-between border-b pb-2">
-        <FiChevronLeft
-          size={24}
-          className={`cursor-pointer ${selectedDate === 0 && "text-gray-300"}`}
-          onClick={() => selectedDate > 0 && setSelectedDate(selectedDate - 1)}
-        />
-        <div className="flex space-x-4">
-          {dates.map((date, index) => (
-            <button
-              key={index}
-              onClick={() => setSelectedDate(index)}
-              className={`px-4 py-2 rounded-md ${
-                selectedDate === index
-                  ? "bg-[#eb744c] text-white lg:text-lg"
-                  : "text-black hover:bg-gray-100"
-              }`}
-            >
-              {date}
-            </button>
-          ))}
-        </div>
-        <FiChevronRight
-          size={24}
-          className={`cursor-pointer ${selectedDate === dates.length - 1 && "text-gray-300"}`}
-          onClick={() => selectedDate < dates.length - 1 && setSelectedDate(selectedDate + 1)}
-        />
-      </div>
 
-      {/* Time Slots */}
+      Time Slots
       <div className="mt-5 space-y-5 bg-white p-8 shadow-md rounded-md">
         {/* Morning Slots */}
         <div>
           <div className="flex items-center space-x-2 mb-2">
             <BiSun className="text-yellow-500" size={20} />
             <span className="font-medium text-gray-700">Morning Slots</span>
-          </div>
-          <div className="flex flex-wrap gap-4">
-            {currentSlots.morning.map((slot:string, index:number) => (
-              <button
-                key={index}
-                onClick={() => setSelectedSlot(slot)}
-                className={`px-4 py-2 border rounded-md ${
-                  selectedSlot === slot
-                    ? "bg-[#017e6e] text-white lg:text-lg"
-                    : "hover:bg-gray-100"
-                }`}
-              >
-                {slot}
-              </button>
-            ))}
           </div>
         </div>
 
@@ -118,21 +48,6 @@ const AppointmentSchedule = () => {
           <div className="flex items-center space-x-2 mb-2">
             <BiSun className="text-orange-500" size={20} />
             <span className="font-medium text-gray-700">Afternoon Slots</span>
-          </div>
-          <div className="flex flex-wrap gap-4">
-            {currentSlots.afternoon.map((slot:string, index:number) => (
-              <button
-                key={index}
-                onClick={() => setSelectedSlot(slot)}
-                className={`px-4 py-2 border rounded-md ${
-                  selectedSlot === slot
-                    ? "bg-[#017e6e] text-white"
-                    : "hover:bg-gray-100"
-                }`}
-              >
-                {slot}
-              </button>
-            ))}
           </div>
         </div>
       </div>

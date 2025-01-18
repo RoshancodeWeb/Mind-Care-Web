@@ -14,6 +14,7 @@ import {
 } from "@/Components/ui/dropdown-menu"
 
 import { ArrowUpDown, MoreHorizontal } from 'lucide-react';
+import Link from 'next/link';
 
 
 
@@ -59,7 +60,7 @@ const Appointment = () => {
                   <DropdownMenuSeparator />
                   <DropdownMenuItem>Accept Appointment</DropdownMenuItem>
                   <DropdownMenuItem>Reject Appointment</DropdownMenuItem>
-                  <DropdownMenuItem>View Patient</DropdownMenuItem>
+                  <DropdownMenuItem><Link href="/Appointment/1">View Appointment</Link></DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
             )
